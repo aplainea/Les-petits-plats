@@ -1,0 +1,37 @@
+@mixin keyframes($keyframes) {
+  @keyframes #{$keyframes} {
+    @content;
+  }
+}
+
+@mixin animation($animation) {
+  animation: #{$animation};
+}
+
+@mixin absolute($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin overText() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin shadow($offset-x, $offset-y, $blur-radius, $shadow-color) {
+  @if $shadow-color {
+    box-shadow: $offset-x $offset-y $blur-radius $shadow-color;
+  } @else {
+    box-shadow: $offset-x $offset-y $blur-radius $shadow-black;
+  }
+}

@@ -1,0 +1,30 @@
+{
+    "name": "les-petits-plats",
+    "version": "1.0.0",
+    "description": "Openclassrooms Projet 7 - Les petits plats",
+    "main": "App.js",
+    "scripts": {
+        "sass-dev": "sass --watch --update --style=expanded public/sass/scss:public/sass/css",
+        "sass-prod": "sass --no-source-map --style=compressed public/sass/scss:public/sass/css",
+        "format:check": "prettier --check ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aplainea/Les-petits-plats.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/aplainea/Les-petits-plats/issues"
+    },
+    "homepage": "https://github.com/aplainea/Les-petits-plats#readme",
+    "dependencies": {
+        "sass": "^1.57.1"
+    },
+    "devDependencies": {
+        "eslint": "^8.31.0",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "prettier": "^2.8.2"
+    }
+}
