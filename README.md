@@ -2,7 +2,7 @@
 
 Openclassrooms Projet 7
 
-Compilation SASS en local
+## Compilation SASS en local
 
 ```
 DEV:
@@ -12,8 +12,10 @@ PROD:
 npm run sass-prod
 ```
 
-## BANCHES
+## Branches
 
 MAIN: Solution retenu
+
 SearchV1: Solution 1
+
 SearchV2: Solution 2
