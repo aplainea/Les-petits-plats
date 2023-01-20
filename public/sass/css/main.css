@@ -270,11 +270,69 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+input {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+}
+input::placeholder {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 425px) {
+  .search__icon {
+    display: none;
+  }
+}
+.search__container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  padding-right: 24px;
+  background: rgb(229, 229, 229);
+  border-radius: 5px;
+}
+.search__input {
+  width: 100%;
+  height: 70px;
+  padding: 24px;
+  background: rgb(229, 229, 229);
+  border: none;
+  border-radius: 5px;
+}
+.search__input:focus {
+  border: none;
+  outline: none;
+}
+.search__icon {
+  width: 44px;
+  height: 44px;
+  font-size: 40px;
+}
+
 header {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 42px;
+}
+
+@media screen and (min-width: 769px) {
+  main {
+    margin: 20px 100px;
+  }
+}
+@media screen and (max-width: 768px) {
+  main {
+    margin: 20px 50px;
+  }
+}
+@media screen and (max-width: 425px) {
+  main {
+    margin: 20px 10px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

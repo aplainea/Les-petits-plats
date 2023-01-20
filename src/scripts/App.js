@@ -17,8 +17,8 @@ class App {
             const Recipes = allRecipesData.map((recipe) => new RecipesFactory(recipe, 'RecipeApi'));
 
             // All recipes data
-            // console.log('===[ All recipes data ]===');
-            // console.log(Recipes);
+            console.log('===[ All recipes data ]===');
+            console.log(Recipes);
         }
     }
 }

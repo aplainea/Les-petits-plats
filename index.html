@@ -12,7 +12,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
-
+        <!-- Font Awesome : https://fontawesome.com -->
+        <script src="https://kit.fontawesome.com/dcb233c813.js" crossorigin="anonymous"></script>
         <title>Les petits plats</title>
     </head>
     <body>
@@ -25,7 +26,20 @@
         </header>
 
         <!-- MAIN -->
-        <main id="main"></main>
+        <main id="main">
+            <!-- Search input-->
+            <form>
+                <div class="search__container">
+                    <input
+                        type="text"
+                        placeholder="Rechercher une recette"
+                        aria-label="Rechercher une recette"
+                        class="search__input"
+                    />
+                    <i class="fa-solid fa-magnifying-glass search__icon"></i>
+                </div>
+            </form>
+        </main>
 
         <!-- JAVASCRIPT -->
         <script src="./src/scripts/Router.js"></script>

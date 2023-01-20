@@ -1,3 +1,13 @@
 body {
     font-family: 'Lato', sans-serif;
 }
+
+input {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    &::placeholder {
+        font-weight: 400;
+    }
+}

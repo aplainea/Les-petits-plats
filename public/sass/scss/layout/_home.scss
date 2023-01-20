@@ -1,0 +1,17 @@
+@media screen and (min-width: 769px) {
+    main {
+        margin: 20px 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        margin: 20px 50px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    main {
+        margin: 20px 10px;
+    }
+}
