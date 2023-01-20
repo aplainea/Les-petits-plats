@@ -26,4 +26,5 @@ SearchV2: Solution 2
 ## Documentation
 
 Vous trouverez la documentation dans le dossier `docs/`.
-Vouys y trouverez notamment la fiche d'investigation sur la fonctionnalité de recherche (filter() et for())
+
+Vous y trouverez notamment la fiche d'investigation sur la fonctionnalité de recherche (filter() et for())
