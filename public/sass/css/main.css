@@ -270,6 +270,27 @@ body {
   font-family: "Lato", sans-serif !important;
 }
 
+.dropdown-toggle {
+  height: 70px;
+}
+
+.dropdown-menu {
+  width: 100%;
+}
+
+.dropdown-menu.bg-primary .dropdown-item:hover {
+  background-color: #007bff;
+}
+
+.dropdown-menu.bg-success .dropdown-item:hover {
+  background-color: #28a745;
+}
+
+.dropdown-menu.bg-danger .dropdown-item:hover {
+  background-color: #dc3545;
+  filter: brightness(110%);
+}
+
 .search__input, .search__icon {
   background: rgb(231, 231, 231);
 }
@@ -283,6 +304,7 @@ body {
 
 /*overwrite bootstrap*/
 .input-group {
+  width: auto;
   height: 70px;
 }
 
@@ -303,6 +325,10 @@ body {
   border: none;
   outline: 0;
   box-shadow: none;
+}
+
+.input__ingredients::placeholder {
+  color: rgb(255, 255, 255);
 }
 
 header {

@@ -16,6 +16,7 @@
 
 /*overwrite bootstrap*/
 .input-group {
+    width: auto;
     height: 70px;
 }
 .input-group-text {
@@ -33,5 +34,11 @@
         border: none;
         outline: 0;
         box-shadow: none;
+    }
+}
+
+.input__ingredients {
+    &::placeholder {
+        color: $white;
     }
 }
