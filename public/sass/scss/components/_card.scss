@@ -1,0 +1,54 @@
+.card {
+    width: 380px;
+    height: 365px;
+    padding: 0;
+    border: unset;
+
+    &__img {
+        background: $grayDark;
+        width: 100%;
+        min-height: 178px;
+        border-radius: 5px 5px 0 0;
+    }
+    &__description {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: $gray;
+        padding: 10px;
+        font-family: 'Lato';
+        font-style: normal;
+        color: $black;
+        border-radius: 0 0 5px 5px;
+
+        &--header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        &--title {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22px;
+        }
+        &--time {
+            min-width: 90px;
+            text-align: right;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 22px;
+        }
+        &--content {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 14px;
+        }
+        &--ingredients,
+        &--preparation {
+            flex: 1;
+        }
+    }
+}
