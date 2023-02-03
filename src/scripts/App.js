@@ -1,24 +1,28 @@
 import { RecipeApi } from './api/RecipeApi.js';
 import { RecipesFactory } from './factories/RecipesFactory.js';
+import { showCardsRecipes } from './components/Recipes.js';
 
 class App {
     constructor() {
-        this._recipeApi = new RecipeApi('./src/data/recipes.json');
+        this.recipeApi = new RecipeApi('./src/data/recipes.json');
+        this.recipes = [];
     }
 
     // Home Page
     async homePage() {
         // Get all recipes data
-        const allRecipesData = await this._recipeApi.getAllRecipes();
+        this.recipes = await this.recipeApi.getAllRecipes();
 
         // Check if we have all recipes data
-        if (allRecipesData) {
+        if (this.recipes !== []) {
             // Use Factory
-            const Recipes = allRecipesData.map((recipe) => new RecipesFactory(recipe, 'RecipeApi'));
+            const Recipes = this.recipes.map((recipe) => new RecipesFactory(recipe, 'RecipeApi'));
 
             // All recipes data
             console.log('===[ All recipes data ]===');
             console.log(Recipes);
+
+            showCardsRecipes(Recipes);
         }
     }
 }
