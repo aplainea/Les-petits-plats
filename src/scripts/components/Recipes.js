@@ -17,3 +17,15 @@ export function showCardsRecipes(recipes) {
         });
     }
 }
+
+// Update Recipes cards
+export function updateCardsRecipes(recipes) {
+    deleteCardsRecipes();
+    showCardsRecipes(recipes);
+}
+
+// Remove Recipes cards
+export function deleteCardsRecipes() {
+    const recipesWrapper = document.getElementById('recipes');
+    recipesWrapper.innerHTML = '';
+}
