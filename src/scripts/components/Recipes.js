@@ -7,7 +7,7 @@ export function showCardsRecipes(recipes) {
     if (recipes.length === 0) {
         // Error message
         const message = document.createElement('p');
-        message.textContent = `Aucun résultat trouvé.`;
+        message.textContent = `Aucune recette ne correspond à votre critère... Vous pouvez chercher "tarte aux pommes", "poisson", etc.`;
         recipesWrapper.appendChild(message);
     } else {
         // Create templates
