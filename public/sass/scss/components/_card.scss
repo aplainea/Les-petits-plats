@@ -24,7 +24,6 @@
         &--header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
         }
         &--title {
             font-size: 18px;
@@ -49,6 +48,14 @@
         &--ingredients,
         &--preparation {
             flex: 1;
+        }
+
+        &--preparation {
+            height: 113px;
+            display: -webkit-box;
+            -webkit-line-clamp: 8;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     }
 }
