@@ -1,6 +1,7 @@
 import { RecipeApi } from './api/RecipeApi.js';
 import { RecipesFactory } from './factories/RecipesFactory.js';
-import { showCardsRecipes } from './components/Recipes.js';
+import { showCardsRecipes, updateCardsRecipes } from './components/Recipes.js';
+import { forSearch } from './components/SearchFor.js';
 
 class App {
     constructor() {
@@ -22,9 +23,32 @@ class App {
             // console.log('===[ All recipes data ]===');
             // console.log(Recipes);
 
-            // Create all recipes cards
+            // Show all recipes cards (first time)
             showCardsRecipes(Recipes);
+
+            // add listener on search bar
+            // if search contain 3 characters => filtered recipes
+            // else show all recipes
+            this.searchBarEvent(Recipes);
         }
+    }
+
+    searchBarEvent(recipesList) {
+        const searchbar = document.querySelector('.search__input');
+        searchbar.addEventListener('input', async (event) => {
+            let searchWord = event.target.value;
+
+            // search contains a minimum of 3 characters
+            if (searchWord.length >= 3) {
+                this.recipes = await forSearch(searchWord, recipesList);
+
+                // show recipes filtered
+                updateCardsRecipes(this.recipes);
+            } else {
+                // update to show all recipes
+                updateCardsRecipes(recipesList);
+            }
+        });
     }
 }
 // Create App "Les-petits-plats"
