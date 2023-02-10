@@ -17,10 +17,10 @@ npm run sass-prod
 MAIN: Solution retenu
 - Solution 1: filter()
 
-SearchV1: Solution 1
+feat/search-filter: Solution 1
 - utilisation de la fonction de filtre: filter()
 
-SearchV2: Solution 2
+feat/search-for: Solution 2
 - utilisation de la méthode de recherche linéaire: boucles for() (+ indexOf() )
 
 ## Documentation
