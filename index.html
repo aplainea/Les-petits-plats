@@ -65,72 +65,18 @@
                 <div id="tags__ustensils"></div>
             </div>
             <!-- Filters -->
-            <div class="container d-flex mb-4">
-                <!-- Ingrédients -->
-                <div class="input-group mb-3 me-3">
-                    <input
-                        type="text"
-                        class="form-control bg-primary text-white input__ingredients"
-                        aria-label="Text input with dropdown button"
-                        placeholder="Ingrédients"
-                    />
-                    <button
-                        class="btn btn-primary rounded-end-2"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        <i class="fas fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end bg-primary">
-                        <li><a class="dropdown-item text-white" href="#">1</a></li>
-                        <li><a class="dropdown-item text-white" href="#">2</a></li>
-                        <li><a class="dropdown-item text-white" href="#">3</a></li>
-                    </ul>
-                </div>
-                <!-- Appareils -->
-                <div class="input-group mb-3 me-3">
-                    <input
-                        type="text"
-                        class="form-control bg-success text-white input__ingredients"
-                        aria-label="Text input with dropdown button"
-                        placeholder="Appareils"
-                    />
-                    <button
-                        class="btn btn-success rounded-end-2"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        <i class="fas fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end bg-success">
-                        <li><a class="dropdown-item text-white" href="#">1</a></li>
-                        <li><a class="dropdown-item text-white" href="#">2</a></li>
-                        <li><a class="dropdown-item text-white" href="#">3</a></li>
-                    </ul>
-                </div>
-                <!-- Ustensiles -->
-                <div class="input-group mb-3 me-3">
-                    <input
-                        type="text"
-                        class="form-control bg-danger text-white input__ingredients"
-                        aria-label="Text input with dropdown button"
-                        placeholder="Ustensiles"
-                    />
-                    <button
-                        class="btn btn-danger rounded-end-2"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        <i class="fas fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end bg-danger">
-                        <li><a class="dropdown-item text-white" href="#">1</a></li>
-                        <li><a class="dropdown-item text-white" href="#">2</a></li>
-                        <li><a class="dropdown-item text-white" href="#">3</a></li>
-                    </ul>
+            <div class="container">
+                <h1>Recherche de recettes</h1>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div id="ingredientsDropdown"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="appliancesDropdown"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="ustensilsDropdown"></div>
+                    </div>
                 </div>
             </div>
             <!-- Recipes -->
