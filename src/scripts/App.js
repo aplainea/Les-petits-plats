@@ -1,12 +1,21 @@
 import { RecipeApi } from './api/RecipeApi.js';
 import { RecipesFactory } from './factories/RecipesFactory.js';
-import { showCardsRecipes, updateCardsRecipes } from './components/Recipes.js';
+import {
+    showCardsRecipes,
+    updateCardsRecipes,
+    getAllIngredients,
+    getAllAppliances,
+    getAllUstensils,
+} from './components/Recipes.js';
 import { filterSearch } from './components/SearchFilter.js';
-
+import { DropdownFilter } from './templates/DropdownFilter.js';
 class App {
     constructor() {
         this.recipeApi = new RecipeApi('./src/data/recipes.json');
         this.recipes = [];
+        this.ingredientsDropdown = document.querySelector('#ingredientsDropdown');
+        this.appliancesDropdown = document.querySelector('#appliancesDropdown');
+        this.ustensilsDropdown = document.querySelector('#ustensilsDropdown');
     }
 
     // Home Page
@@ -30,6 +39,42 @@ class App {
             // if search contain 3 characters => filtered recipes
             // else show all recipes
             this.searchBarEvent(Recipes);
+
+            // All ingredients, appliances and ustensils data
+            // console.log(getAllIngredients(Recipes));
+            // console.log(getAllAppliances(Recipes));
+            // console.log(getAllUstensils(Recipes));
+
+            // Create dropdown filter (ingredients, appliances and ustensils)
+            const ingredientDropdownFilter = new DropdownFilter(
+                this.ingredientDropdown,
+                getAllIngredients(Recipes),
+                'Rechercher un ingrédient',
+            );
+            const applianceDropdownFilter = new DropdownFilter(
+                this.appliancesDropdown,
+                getAllIngredients(Recipes),
+                'Rechercher un appareil',
+            );
+            const ustensilDropdownFilter = new DropdownFilter(
+                this.ustensilsDropdown,
+                getAllIngredients(Recipes),
+                'Rechercher un ustensile',
+            );
+
+            // Add event listener on every input dropdown
+            const ingredientDropdownInput = ingredientDropdown.querySelector('input');
+            ingredientDropdownInput.addEventListener('input', (event) => {
+                ingredientDropdownFilter.handleInput(event.target.value);
+            });
+            const applianceDropdownInput = ingredientDropdown.querySelector('input');
+            applianceDropdownInput.addEventListener('input', (event) => {
+                applianceDropdownFilter.handleInput(event.target.value);
+            });
+            const ustensiltDropdownInput = ingredientDropdown.querySelector('input');
+            ustensiltDropdownInput.addEventListener('input', (event) => {
+                ustensilDropdownFilter.handleInput(event.target.value);
+            });
         }
     }
 
