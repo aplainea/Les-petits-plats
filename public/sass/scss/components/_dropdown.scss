@@ -20,3 +20,24 @@
         filter: brightness(110%);
     }
 }
+
+.menu-column {
+    width: calc(100% / 3);
+    display: inline-block;
+    vertical-align: top;
+}
+
+#ingredients-menu {
+    display: none;
+    width: 100%;
+    z-index: 1;
+}
+
+#ingredients-menu li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+#ingredients-menu li:hover {
+    background-color: #f5f5f5;
+}

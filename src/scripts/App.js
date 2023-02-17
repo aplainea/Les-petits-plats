@@ -8,6 +8,7 @@ import {
     getAllUstensils,
 } from './components/Recipes.js';
 import { filterSearch } from './components/SearchFilter.js';
+import { handleDropdown } from './components/Dropdown.js';
 class App {
     constructor() {
         this.recipeApi = new RecipeApi('./src/data/recipes.json');
@@ -45,6 +46,9 @@ class App {
             console.log(getAllUstensils(Recipes));
 
             // Create dropdown filter (ingredients, appliances and ustensils)
+            handleDropdown('ingredients', getAllIngredients, Recipes);
+            handleDropdown('appliances', getAllAppliances, Recipes);
+            handleDropdown('ustensils', getAllUstensils, Recipes);
         }
     }
 
