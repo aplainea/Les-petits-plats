@@ -13,6 +13,7 @@ class App {
     constructor() {
         this.recipeApi = new RecipeApi('./src/data/recipes.json');
         this.recipes = [];
+        this.filteredRecipes = [];
         this.ingredientsDropdown = document.querySelector('#ingredientsDropdown');
         this.appliancesDropdown = document.querySelector('#appliancesDropdown');
         this.ustensilsDropdown = document.querySelector('#ustensilsDropdown');
@@ -28,27 +29,16 @@ class App {
             // Use Factory
             const Recipes = this.recipes.map((recipe) => new RecipesFactory(recipe, 'RecipeApi'));
 
-            // All recipes data
-            // console.log('===[ All recipes data ]===');
-            // console.log(Recipes);
-
-            // Show all recipes cards (first time)
+            // Init all recipes cards (first time)
             showCardsRecipes(Recipes);
 
+            // Init dropdown filter (ingredients, appliances and ustensils)
+            handleDropdown('ingredients', getAllIngredients(Recipes));
+            handleDropdown('appliances', getAllAppliances(Recipes));
+            handleDropdown('ustensils', getAllUstensils(Recipes));
+
             // add listener on search bar
-            // if search contain 3 characters => filtered recipes
-            // else show all recipes
             this.searchBarEvent(Recipes);
-
-            // All ingredients, appliances and ustensils data
-            console.log(getAllIngredients(Recipes));
-            console.log(getAllAppliances(Recipes));
-            console.log(getAllUstensils(Recipes));
-
-            // Create dropdown filter (ingredients, appliances and ustensils)
-            handleDropdown('ingredients', getAllIngredients, Recipes);
-            handleDropdown('appliances', getAllAppliances, Recipes);
-            handleDropdown('ustensils', getAllUstensils, Recipes);
         }
     }
 
@@ -63,9 +53,15 @@ class App {
 
                 // show recipes filtered
                 updateCardsRecipes(this.recipes);
+                handleDropdown('ingredients', getAllIngredients(this.recipes));
+                handleDropdown('appliances', getAllAppliances(this.recipes));
+                handleDropdown('ustensils', getAllUstensils(this.recipes));
             } else {
                 // update to show all recipes
                 updateCardsRecipes(recipesList);
+                handleDropdown('ingredients', getAllIngredients(recipesList));
+                handleDropdown('appliances', getAllAppliances(recipesList));
+                handleDropdown('ustensils', getAllUstensils(recipesLists));
             }
         });
     }

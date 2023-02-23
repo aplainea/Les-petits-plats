@@ -30,7 +30,7 @@ export function deleteCardsRecipes() {
     recipesWrapper.innerHTML = '';
 }
 
-// Get all Appliances
+// Get all Ingredients
 export function getAllIngredients(recipes) {
     //flatMap() method to extract all the ingredients of each recipe and group them in a single list
     //map() method to keep only the ingredient names

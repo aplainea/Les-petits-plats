@@ -1,31 +1,37 @@
-// Fonction pour afficher le menu pour un dropdown
+// Show menu on dropdown
 function displayMenuForDropdown(dropdownId, items) {
     const dropdown = document.querySelector(`#${dropdownId}-dropdown`);
     const input = dropdown.querySelector(`#${dropdownId}-input`);
     const menu = dropdown.querySelector(`#${dropdownId}-menu`);
-    menu.innerHTML = '';
-    const columns = 3;
-    const maxItems = 30;
-    const itemsPerColumn = Math.ceil(Math.min(maxItems, items.length) / columns);
-    for (let i = 0; i < columns; i++) {
-        const column = document.createElement('div');
-        column.classList.add('menu-column');
-        for (let j = 0; j < itemsPerColumn; j++) {
-            const index = i * itemsPerColumn + j;
-            if (index >= items.length) {
-                break;
-            }
-            const item = items[index];
-            const li = document.createElement('li');
-            li.textContent = item;
-            column.appendChild(li);
-        }
-        menu.appendChild(column);
-    }
-    menu.style.display = 'block';
-}
 
-export function handleDropdown(dropdownId, getAllItems, recipes) {
+    menu.innerHTML = '';
+
+    // manage items on 3 columns
+    const columns = 3;
+    const itemsPerColumn = Math.ceil(items.length / columns);
+
+    const columnElements = Array.from({ length: columns }, () => document.createElement('div'));
+
+    items.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+
+        const columnIndex = Math.floor(index / itemsPerColumn);
+        columnElements[columnIndex].appendChild(li);
+    });
+
+    columnElements.forEach((column) => {
+        column.classList.add('menu-column');
+        menu.appendChild(column);
+    });
+
+    if (items !== null) {
+        menu.style.display = 'block';
+    }
+    console.log(items);
+}
+// Dropdown
+export function handleDropdown(dropdownId, recipes) {
     const dropdown = document.querySelector(`#${dropdownId}-dropdown`);
     const input = dropdown.querySelector(`#${dropdownId}-input`);
     const menu = dropdown.querySelector(`#${dropdownId}-menu`);
@@ -33,18 +39,18 @@ export function handleDropdown(dropdownId, getAllItems, recipes) {
     input.addEventListener('input', (event) => {
         const inputValue = event.target.value.trim();
         if (inputValue) {
-            const items = getAllItems(recipes).filter((item) =>
+            const items = recipes.filter((item) =>
                 item.toLowerCase().includes(inputValue.toLowerCase()),
             );
             displayMenuForDropdown(dropdownId, items);
         } else {
-            const items = getAllItems(recipes);
+            const items = recipes;
             displayMenuForDropdown(dropdownId, items);
         }
     });
 
     input.addEventListener('focus', (event) => {
-        const items = getAllItems(recipes);
+        const items = recipes;
         displayMenuForDropdown(dropdownId, items);
     });
 
