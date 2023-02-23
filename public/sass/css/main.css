@@ -328,25 +328,17 @@ body {
   overflow: hidden;
 }
 
-.dropdown-toggle {
-  height: 70px;
+.filter-container {
+  display: flex;
+  flex-direction: row;
 }
 
-.dropdown-menu {
-  width: 100%;
+.dropdown-container {
+  margin-right: 20px;
 }
 
-.dropdown-menu.bg-primary .dropdown-item:hover {
-  background-color: #007bff;
-}
-
-.dropdown-menu.bg-success .dropdown-item:hover {
-  background-color: #28a745;
-}
-
-.dropdown-menu.bg-danger .dropdown-item:hover {
-  background-color: #dc3545;
-  filter: brightness(110%);
+.dropdown {
+  display: flex;
 }
 
 .menu-column {
@@ -355,19 +347,111 @@ body {
   vertical-align: top;
 }
 
-#ingredients-menu {
+#ingredients-menu,
+#appliances-menu,
+#ustensils-menu {
   display: none;
-  width: 100%;
-  z-index: 1;
 }
 
-#ingredients-menu li {
+#ingredients-menu li,
+#appliances-menu li,
+#ustensils-menu li {
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   padding: 5px;
 }
 
-#ingredients-menu li:hover {
-  background-color: #f5f5f5;
+#ingredients-menu li:hover,
+#appliances-menu li:hover,
+#ustensils-menu li:hover {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.ingredients-dropdown:focus-visible,
+.appliances-dropdown .ustensils-dropdown:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.dropdown-input {
+  position: relative;
+  width: 130px;
+  height: 70px;
+  padding: 24px 15px;
+  border-radius: 5px 0 0 0;
+  color: rgb(255, 255, 255);
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 700;
+}
+.dropdown-input:focus-visible {
+  border: none;
+  outline: none;
+}
+.dropdown-input.ingredients-input {
+  background: rgb(50, 130, 247);
+  border-color: rgb(50, 130, 247);
+}
+.dropdown-input.appliances-input {
+  background: rgb(104, 217, 164);
+  border-color: rgb(104, 217, 164);
+}
+.dropdown-input.ustensils-input {
+  background: rgb(237, 100, 84);
+  border-color: rgb(237, 100, 84);
+}
+
+.icon-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 70px;
+  border-radius: 0 5px 0 0;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+}
+.icon-input.icon-ingredients {
+  background: rgb(50, 130, 247);
+}
+.icon-input.icon-appliances {
+  background: rgb(104, 217, 164);
+}
+.icon-input.icon-ustensils {
+  background: rgb(237, 100, 84);
+}
+
+.icon-rotate {
+  transform: rotate(180deg);
+  border-radius: 0 0 0 5px;
+}
+
+.list-dropdown {
+  width: 800px;
+  display: none;
+  position: absolute;
+  top: auto;
+  padding: 20px;
+  z-index: 3;
+  list-style-type: none;
+  color: white;
+  font-size: 18px;
+  line-height: 22px;
+  border-radius: 0 0 5px 5px;
+  margin: 0;
+}
+.list-dropdown.list-ingredients {
+  background: rgb(50, 130, 247);
+}
+.list-dropdown.list-appliances {
+  background: rgb(104, 217, 164);
+}
+.list-dropdown.list-ustensils {
+  background: rgb(237, 100, 84);
 }
 
 .search__input, .search__icon {

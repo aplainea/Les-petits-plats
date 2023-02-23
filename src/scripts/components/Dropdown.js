@@ -12,9 +12,12 @@ function displayMenuForDropdown(dropdownId, items) {
 
     const columnElements = Array.from({ length: columns }, () => document.createElement('div'));
 
+    items.filter((ingredient, index, array) => array.indexOf(ingredient) === index);
+
     items.forEach((item, index) => {
         const li = document.createElement('li');
         li.textContent = item;
+        li.style.width = '100%';
 
         const columnIndex = Math.floor(index / itemsPerColumn);
         columnElements[columnIndex].appendChild(li);
@@ -28,12 +31,12 @@ function displayMenuForDropdown(dropdownId, items) {
     if (items !== null) {
         menu.style.display = 'block';
     }
-    console.log(items);
 }
 // Dropdown
 export function handleDropdown(dropdownId, recipes) {
     const dropdown = document.querySelector(`#${dropdownId}-dropdown`);
     const input = dropdown.querySelector(`#${dropdownId}-input`);
+    const inputIcon = dropdown.querySelector(`#${dropdownId}-icon`);
     const menu = dropdown.querySelector(`#${dropdownId}-menu`);
 
     input.addEventListener('input', (event) => {
@@ -44,24 +47,27 @@ export function handleDropdown(dropdownId, recipes) {
             );
             displayMenuForDropdown(dropdownId, items);
         } else {
-            const items = recipes;
-            displayMenuForDropdown(dropdownId, items);
+            displayMenuForDropdown(dropdownId, recipes);
         }
     });
 
     input.addEventListener('focus', (event) => {
-        const items = recipes;
-        displayMenuForDropdown(dropdownId, items);
+        displayMenuForDropdown(dropdownId, recipes);
+        input.style.width = '750px';
+        input.style.zIndex = '3';
+        inputIcon.classList.add('icon-rotate');
     });
 
     input.addEventListener('blur', (event) => {
+        input.value = '';
+        input.style.width = '130px';
+        input.style.zIndex = '1';
         menu.style.display = 'none';
+        inputIcon.classList.remove('icon-rotate');
     });
 
     menu.addEventListener('click', (event) => {
         if (event.target.nodeName === 'LI') {
-            const selected = event.target.textContent;
-            input.value = selected;
             menu.style.display = 'none';
         }
     });

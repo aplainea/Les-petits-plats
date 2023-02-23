@@ -65,39 +65,60 @@
                 <div id="tags__ustensils"></div>
             </div>
             <!-- Filters -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div id="ingredients-dropdown" class="dropdown">
-                            <input
-                                type="text"
-                                id="ingredients-input"
-                                placeholder="Rechercher un ingrédient"
-                                autocomplete="off"
-                            />
-                            <ul id="ingredients-menu"></ul>
+            <div class="container mb-3">
+                <div class="filter-container">
+                    <div class="dropdown-container">
+                        <div id="ingredients-dropdown">
+                            <div class="dropdown">
+                                <input
+                                    type="text"
+                                    id="ingredients-input"
+                                    class="dropdown-input ingredients-input"
+                                    placeholder="Ingrédients"
+                                    autocomplete="off"
+                                />
+                                <div id="ingredients-icon" class="icon-input icon-ingredients">
+                                    <i class="fa-sharp fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+
+                            <ul id="ingredients-menu" class="list-dropdown list-ingredients"></ul>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div id="appliances-dropdown" class="dropdown">
-                            <input
-                                type="text"
-                                id="appliances-input"
-                                placeholder="Rechercher un appareil"
-                                autocomplete="off"
-                            />
-                            <ul id="appliances-menu"></ul>
+                    <div class="dropdown-container">
+                        <div id="appliances-dropdown">
+                            <div class="dropdown">
+                                <input
+                                    type="text"
+                                    id="appliances-input"
+                                    class="dropdown-input appliances-input"
+                                    placeholder="Appareils"
+                                    autocomplete="off"
+                                />
+                                <div id="appliances-icon" class="icon-input icon-appliances">
+                                    <i class="fa-sharp fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+
+                            <ul id="appliances-menu" class="list-dropdown list-appliances"></ul>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div id="ustensils-dropdown" class="dropdown">
-                            <input
-                                type="text"
-                                id="ustensils-input"
-                                placeholder="Rechercher un ustensile"
-                                autocomplete="off"
-                            />
-                            <ul id="ustensils-menu"></ul>
+                    <div class="dropdown-container">
+                        <div id="ustensils-dropdown">
+                            <div class="dropdown">
+                                <input
+                                    type="text"
+                                    id="ustensils-input"
+                                    class="dropdown-input ustensils-input"
+                                    placeholder="Ustensiles"
+                                    autocomplete="off"
+                                />
+                                <div id="ustensils-icon" class="icon-input icon-ustensils">
+                                    <i class="fa-sharp fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+
+                            <ul id="ustensils-menu" class="list-dropdown list-ustensils"></ul>
                         </div>
                     </div>
                 </div>

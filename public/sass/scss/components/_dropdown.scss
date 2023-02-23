@@ -1,24 +1,14 @@
-.dropdown-toggle {
-    height: 70px;
+.filter-container {
+    display: flex;
+    flex-direction: row;
 }
-.dropdown-menu {
-    width: 100%;
+
+.dropdown-container {
+    margin-right: 20px;
 }
-.dropdown-menu.bg-primary {
-    .dropdown-item:hover {
-        background-color: #007bff;
-    }
-}
-.dropdown-menu.bg-success {
-    .dropdown-item:hover {
-        background-color: #28a745;
-    }
-}
-.dropdown-menu.bg-danger {
-    .dropdown-item:hover {
-        background-color: #dc3545;
-        filter: brightness(110%);
-    }
+
+.dropdown {
+    display: flex;
 }
 
 .menu-column {
@@ -27,17 +17,115 @@
     vertical-align: top;
 }
 
-#ingredients-menu {
+#ingredients-menu,
+#appliances-menu,
+#ustensils-menu {
     display: none;
-    width: 100%;
-    z-index: 1;
 }
 
-#ingredients-menu li {
+#ingredients-menu li,
+#appliances-menu li,
+#ustensils-menu li {
     cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     padding: 5px;
 }
 
-#ingredients-menu li:hover {
-    background-color: #f5f5f5;
+#ingredients-menu li:hover,
+#appliances-menu li:hover,
+#ustensils-menu li:hover {
+    width: 100%;
+    background: rgb(0 0 0/0.1);
+}
+
+.ingredients-dropdown,
+.appliances-dropdown .ustensils-dropdown {
+    &:focus-visible {
+        border: none;
+        outline: none;
+    }
+}
+
+.dropdown-input {
+    position: relative;
+    width: 130px;
+    height: 70px;
+    padding: 24px 15px;
+    border-radius: 5px 0 0 0;
+    color: $white;
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 700;
+
+    &:focus-visible {
+        border: none;
+        outline: none;
+    }
+
+    &.ingredients-input {
+        background: $blue;
+        border-color: $blue;
+    }
+    &.appliances-input {
+        background: $green;
+        border-color: $green;
+    }
+    &.ustensils-input {
+        background: $red;
+        border-color: $red;
+    }
+}
+
+.icon-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 70px;
+    border-radius: 0 5px 0 0;
+    color: $white;
+    font-size: 18px;
+
+    &.icon-ingredients {
+        background: $blue;
+    }
+    &.icon-appliances {
+        background: $green;
+    }
+    &.icon-ustensils {
+        background: $red;
+    }
+}
+
+.icon-rotate {
+    transform: rotate(180deg);
+    border-radius: 0 0 0 5px;
+}
+
+.list-dropdown {
+    width: 800px;
+    display: none;
+    position: absolute;
+    top: auto;
+    padding: 20px;
+    z-index: 3;
+    list-style-type: none;
+    color: white;
+    font-size: 18px;
+    line-height: 22px;
+    border-radius: 0 0 5px 5px;
+    margin: 0;
+
+    &.list-ingredients {
+        background: $blue;
+    }
+    &.list-appliances {
+        background: $green;
+    }
+    &.list-ustensils {
+        background: $red;
+    }
 }
