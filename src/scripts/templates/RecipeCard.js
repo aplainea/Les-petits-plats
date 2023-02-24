@@ -8,7 +8,7 @@ class RecipeCard {
         // generate dynamics recipe card--
         const recipeCard = document.createElement('div');
         const content = `
-            <div class="card mb-4">
+            <div class="card mb-4 me-4">
                 <div class="card__img"></div>
                 <div class="card__description">
                     <div class="card__description--header">

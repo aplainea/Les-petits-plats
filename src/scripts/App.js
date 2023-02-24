@@ -9,6 +9,7 @@ import {
 } from './components/Recipes.js';
 import { filterSearch } from './components/SearchFilter.js';
 import { handleDropdown } from './components/Dropdown.js';
+import { handleTagRemove } from './components/Tags.js';
 class App {
     constructor() {
         this.recipeApi = new RecipeApi('./src/data/recipes.json');
@@ -42,6 +43,7 @@ class App {
         }
     }
 
+    // Event on main search bar
     searchBarEvent(recipesList) {
         const searchbar = document.querySelector('.search__input');
 
@@ -56,7 +58,26 @@ class App {
             handleDropdown('ustensils', getAllUstensils(filteredRecipes));
         });
     }
+
+    getAllTagIds() {
+        return Array.from(document.querySelectorAll('.tags button')).flatMap((button) => {
+            const transformedId = button.id
+                .replace('btn-', '')
+                .replace(/-/g, ' ')
+                .replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.substring(1));
+            return [transformedId];
+        });
+    }
 }
+
+// Event close tag
+document.addEventListener('click', (event) => {
+    const clickedElement = event.target;
+    if (clickedElement.classList.contains('fa-times')) {
+        handleTagRemove(clickedElement);
+    }
+});
+
 // Create App "Les-petits-plats"
 const app = new App();
 
