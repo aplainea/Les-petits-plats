@@ -1,3 +1,4 @@
+import { createTagCard } from '../templates/TagCard.js';
 // Show menu on dropdown
 function displayMenuForDropdown(dropdownId, items) {
     const dropdown = document.querySelector(`#${dropdownId}-dropdown`);
@@ -16,6 +17,7 @@ function displayMenuForDropdown(dropdownId, items) {
 
     items.forEach((item, index) => {
         const li = document.createElement('li');
+        li.setAttribute('id', `${dropdownId}-tag`);
         li.textContent = item;
         li.style.width = '100%';
 
@@ -39,6 +41,7 @@ export function handleDropdown(dropdownId, recipes) {
     const inputIcon = dropdown.querySelector(`#${dropdownId}-icon`);
     const menu = dropdown.querySelector(`#${dropdownId}-menu`);
 
+    // Used to show dropdown with updated list
     input.addEventListener('input', (event) => {
         const inputValue = event.target.value.trim();
         if (inputValue) {
@@ -51,23 +54,45 @@ export function handleDropdown(dropdownId, recipes) {
         }
     });
 
+    // Manage style input with menu
     input.addEventListener('focus', (event) => {
         displayMenuForDropdown(dropdownId, recipes);
         input.style.width = '750px';
         input.style.zIndex = '3';
         inputIcon.classList.add('icon-rotate');
     });
-
     input.addEventListener('blur', (event) => {
+        event.stopPropagation();
         input.value = '';
         input.style.width = '130px';
         input.style.zIndex = '1';
-        menu.style.display = 'none';
         inputIcon.classList.remove('icon-rotate');
     });
 
+    // manage tags (create tag when clicking on LI)
     menu.addEventListener('click', (event) => {
         if (event.target.nodeName === 'LI') {
+            const tagId = event.target.id;
+            const tagName = event.target.textContent;
+            const wrapperMap = {
+                'ingredients-tag': 'tags__ingredients',
+                'appliances-tag': 'tags__appliances',
+                'ustensils-tag': 'tags__ustensils',
+            };
+            const wrapperId = wrapperMap[tagId];
+            if (wrapperId) {
+                const wrapper = document.getElementById(wrapperId);
+                wrapper.appendChild(createTagCard(tagName, tagId));
+                menu.style.display = 'none';
+            }
+        }
+    });
+
+    // Close dropdown when clicking outside of it
+    document.addEventListener('click', (event) => {
+        const isClickInsideMenu = menu.contains(event.target);
+        const isClickInsideInput = input.contains(event.target);
+        if (!isClickInsideMenu && !isClickInsideInput) {
             menu.style.display = 'none';
         }
     });

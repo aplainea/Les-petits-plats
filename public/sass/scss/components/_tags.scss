@@ -1,0 +1,43 @@
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag__ingredient {
+    color: $white;
+    margin: 0 10px 5px 0;
+    &:hover,
+    &:active {
+        color: $white !important;
+    }
+}
+
+.ingredients-tag {
+    background: $blue;
+    &:hover,
+    &:active {
+        background: $blue;
+        background-color: $blue !important;
+        border-color: $blue !important;
+    }
+}
+
+.appliances-tag {
+    background: $green;
+    &:hover,
+    &:active {
+        background: $green;
+        background-color: $green !important;
+        border-color: $green !important;
+    }
+}
+
+.ustensils-tag {
+    background: $red;
+    &:hover,
+    &:active {
+        background: $red;
+        background-color: $red !important;
+        border-color: $red !important;
+    }
+}

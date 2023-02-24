@@ -494,6 +494,46 @@ body {
   color: rgb(255, 255, 255);
 }
 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag__ingredient {
+  color: rgb(255, 255, 255);
+  margin: 0 10px 5px 0;
+}
+.tag__ingredient:hover, .tag__ingredient:active {
+  color: rgb(255, 255, 255) !important;
+}
+
+.ingredients-tag {
+  background: rgb(50, 130, 247);
+}
+.ingredients-tag:hover, .ingredients-tag:active {
+  background: rgb(50, 130, 247);
+  background-color: rgb(50, 130, 247) !important;
+  border-color: rgb(50, 130, 247) !important;
+}
+
+.appliances-tag {
+  background: rgb(104, 217, 164);
+}
+.appliances-tag:hover, .appliances-tag:active {
+  background: rgb(104, 217, 164);
+  background-color: rgb(104, 217, 164) !important;
+  border-color: rgb(104, 217, 164) !important;
+}
+
+.ustensils-tag {
+  background: rgb(237, 100, 84);
+}
+.ustensils-tag:hover, .ustensils-tag:active {
+  background: rgb(237, 100, 84);
+  background-color: rgb(237, 100, 84) !important;
+  border-color: rgb(237, 100, 84) !important;
+}
+
 header {
   display: flex;
   justify-content: center;
