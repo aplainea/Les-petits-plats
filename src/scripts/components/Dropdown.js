@@ -82,7 +82,12 @@ export function handleDropdown(dropdownId, recipes) {
             const wrapperId = wrapperMap[tagId];
             if (wrapperId) {
                 const wrapper = document.getElementById(wrapperId);
-                wrapper.appendChild(createTagCard(tagName, tagId));
+                const existingTag = wrapper.querySelector(
+                    `#btn-${tagName.replace(/ /g, '-').toLowerCase()}`,
+                );
+                if (!existingTag) {
+                    wrapper.appendChild(createTagCard(tagName, tagId));
+                }
                 menu.style.display = 'none';
             }
         }

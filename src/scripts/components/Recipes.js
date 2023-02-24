@@ -35,22 +35,27 @@ export function getAllIngredients(recipes) {
     //flatMap() method to extract all the ingredients of each recipe and group them in a single list
     //map() method to keep only the ingredient names
     //filter() method to remove duplicates from the list
+    //second map() used to add UpperCase on first letter
     return recipes
         .flatMap((recipe) => recipe._ingredients)
-        .map((ingredient) => ingredient.ingredient)
-        .filter((ingredient, index, array) => array.indexOf(ingredient) === index);
+        .map((ingredient) => ingredient.ingredient.toLowerCase())
+        .filter((ingredient, index, array) => array.indexOf(ingredient) === index)
+        .map((ingredient) => ingredient.charAt(0).toUpperCase() + ingredient.slice(1));
 }
 
 // Get all Appliances
 export function getAllAppliances(recipes) {
     return recipes
-        .map((recipe) => recipe._appliance)
-        .filter((appliance, index, array) => array.indexOf(appliance) === index);
+        .map((recipe) => recipe._appliance.toLowerCase())
+        .filter((appliance, index, array) => array.indexOf(appliance) === index)
+        .map((appliance) => appliance.charAt(0).toUpperCase() + appliance.slice(1));
 }
 
 // Get all Ustensils
 export function getAllUstensils(recipes) {
     return recipes
         .flatMap((recipe) => recipe._ustensils)
-        .filter((ustensil, index, array) => array.indexOf(ustensil) === index);
+        .map((ustensil) => ustensil.toLowerCase())
+        .filter((ustensil, index, array) => array.indexOf(ustensil) === index)
+        .map((ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1));
 }

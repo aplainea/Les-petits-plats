@@ -2,7 +2,9 @@
 export function createTagCard(nameRecipe, filterRecipe) {
     const tagCard = document.createElement('div');
     const content = `
-        <button class="tag__ingredient btn ${filterRecipe}">
+        <button id="btn-${nameRecipe
+            .replace(/ /g, '-')
+            .toLowerCase()}" class="tag__ingredient btn ${filterRecipe}">
             <span class="pe-2">${nameRecipe}</span>
             <i class="fa fa-times"></i>
         </button>

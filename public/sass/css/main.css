@@ -494,6 +494,11 @@ body {
   color: rgb(255, 255, 255);
 }
 
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;

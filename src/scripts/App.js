@@ -44,25 +44,16 @@ class App {
 
     searchBarEvent(recipesList) {
         const searchbar = document.querySelector('.search__input');
+
         searchbar.addEventListener('input', async (event) => {
-            let searchWord = event.target.value;
+            const searchWord = event.target.value;
+            const filteredRecipes =
+                searchWord.length >= 3 ? await filterSearch(searchWord, recipesList) : recipesList;
 
-            // search contains a minimum of 3 characters
-            if (searchWord.length >= 3) {
-                this.recipes = await filterSearch(searchWord, recipesList);
-
-                // show recipes filtered
-                updateCardsRecipes(this.recipes);
-                handleDropdown('ingredients', getAllIngredients(this.recipes));
-                handleDropdown('appliances', getAllAppliances(this.recipes));
-                handleDropdown('ustensils', getAllUstensils(this.recipes));
-            } else {
-                // update to show all recipes
-                updateCardsRecipes(recipesList);
-                handleDropdown('ingredients', getAllIngredients(recipesList));
-                handleDropdown('appliances', getAllAppliances(recipesList));
-                handleDropdown('ustensils', getAllUstensils(recipesLists));
-            }
+            updateCardsRecipes(filteredRecipes);
+            handleDropdown('ingredients', getAllIngredients(filteredRecipes));
+            handleDropdown('appliances', getAllAppliances(filteredRecipes));
+            handleDropdown('ustensils', getAllUstensils(filteredRecipes));
         });
     }
 }
