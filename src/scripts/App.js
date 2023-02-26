@@ -6,10 +6,11 @@ import {
     getAllIngredients,
     getAllAppliances,
     getAllUstensils,
+    filterRecipesByTags,
 } from './components/Recipes.js';
 import { filterSearch } from './components/SearchFilter.js';
 import { handleDropdown } from './components/Dropdown.js';
-import { handleTagRemove } from './components/Tags.js';
+import { handleTagRemove, getAllTagIds } from './components/Tags.js';
 class App {
     constructor() {
         this.recipeApi = new RecipeApi('./src/data/recipes.json');
@@ -29,43 +30,58 @@ class App {
         if (this.recipes !== []) {
             // Use Factory
             const Recipes = this.recipes.map((recipe) => new RecipesFactory(recipe, 'RecipeApi'));
+            this.recipes = Recipes;
 
             // Init all recipes cards (first time)
-            showCardsRecipes(Recipes);
+            showCardsRecipes(this.recipes);
 
             // Init dropdown filter (ingredients, appliances and ustensils)
-            handleDropdown('ingredients', getAllIngredients(Recipes));
-            handleDropdown('appliances', getAllAppliances(Recipes));
-            handleDropdown('ustensils', getAllUstensils(Recipes));
+            handleDropdown('ingredients', getAllIngredients(this.recipes));
+            handleDropdown('appliances', getAllAppliances(this.recipes));
+            handleDropdown('ustensils', getAllUstensils(this.recipes));
 
             // add listener on search bar
             this.searchBarEvent(Recipes);
+            // add listener on tags container
+            this.tagsEvent(Recipes);
         }
     }
 
     // Event on main search bar
-    searchBarEvent(recipesList) {
+    searchBarEvent(recipes) {
         const searchbar = document.querySelector('.search__input');
 
         searchbar.addEventListener('input', async (event) => {
             const searchWord = event.target.value;
             const filteredRecipes =
-                searchWord.length >= 3 ? await filterSearch(searchWord, recipesList) : recipesList;
+                searchWord.length >= 3 ? await filterSearch(searchWord, recipes) : recipes;
 
+            // update recipes list
             updateCardsRecipes(filteredRecipes);
+            // update dropdown filter
             handleDropdown('ingredients', getAllIngredients(filteredRecipes));
             handleDropdown('appliances', getAllAppliances(filteredRecipes));
             handleDropdown('ustensils', getAllUstensils(filteredRecipes));
+            // update recipes with tags filters
+            this.tagsEvent(filteredRecipes);
         });
     }
 
-    getAllTagIds() {
-        return Array.from(document.querySelectorAll('.tags button')).flatMap((button) => {
-            const transformedId = button.id
-                .replace('btn-', '')
-                .replace(/-/g, ' ')
-                .replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.substring(1));
-            return [transformedId];
+    // Event on tags
+    tagsEvent(recipes) {
+        const tagsContainer = document.querySelector('.tags-container');
+        // When new or remove tag on tags container
+        tagsContainer.addEventListener('DOMSubtreeModified', () => {
+            let filteredRecipesWithTags = filterRecipesByTags(recipes, getAllTagIds());
+            filteredRecipesWithTags.length > 0
+                ? (this.recipes = filteredRecipesWithTags)
+                : (this.recipes = recipes);
+            // update recipes list
+            updateCardsRecipes(this.recipes);
+            // update dropdown filter
+            handleDropdown('ingredients', getAllIngredients(this.recipes));
+            handleDropdown('appliances', getAllAppliances(this.recipes));
+            handleDropdown('ustensils', getAllUstensils(this.recipes));
         });
     }
 }

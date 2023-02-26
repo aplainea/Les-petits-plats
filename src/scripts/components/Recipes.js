@@ -59,3 +59,17 @@ export function getAllUstensils(recipes) {
         .filter((ustensil, index, array) => array.indexOf(ustensil) === index)
         .map((ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1));
 }
+
+// filter recipes by tags
+export function filterRecipesByTags(recipes, tags) {
+    const formattedTags = tags.map((tag) => tag.toLowerCase());
+    const filteredRecipes = recipes.filter((recipe) => {
+        const allItems = recipe._ingredients
+            .map((ingredient) => ingredient.ingredient.toLowerCase())
+            .concat(recipe._ustensils.map((ustensil) => ustensil.toLowerCase()))
+            .concat(recipe._appliance.toLowerCase());
+        return formattedTags.every((tag) => allItems.includes(tag));
+    });
+
+    return filteredRecipes;
+}
