@@ -14,11 +14,10 @@ import { handleTagRemove, getAllTagIds } from './components/Tags.js';
 class App {
     constructor() {
         this.recipeApi = new RecipeApi('./src/data/recipes.json');
-        this.recipes = [];
-        this.filteredRecipes = [];
         this.ingredientsDropdown = document.querySelector('#ingredientsDropdown');
         this.appliancesDropdown = document.querySelector('#appliancesDropdown');
         this.ustensilsDropdown = document.querySelector('#ustensilsDropdown');
+        this.recipes = [];
     }
 
     // Home Page
@@ -36,14 +35,12 @@ class App {
             showCardsRecipes(this.recipes);
 
             // Init dropdown filter (ingredients, appliances and ustensils)
-            handleDropdown('ingredients', getAllIngredients(this.recipes));
-            handleDropdown('appliances', getAllAppliances(this.recipes));
-            handleDropdown('ustensils', getAllUstensils(this.recipes));
+            this.updateDropdown();
 
             // add listener on search bar
-            this.searchBarEvent(Recipes);
+            this.searchBarEvent(this.recipes);
             // add listener on tags container
-            this.tagsEvent(Recipes);
+            this.tagsEvent(this.recipes);
         }
     }
 
@@ -54,16 +51,20 @@ class App {
         searchbar.addEventListener('input', async (event) => {
             const searchWord = event.target.value;
             const filteredRecipes =
-                searchWord.length >= 3 ? await filterSearch(searchWord, recipes) : recipes;
+                searchWord.length >= 3
+                    ? await filterSearch(searchWord, this.recipes)
+                    : (this.recipes = recipes);
+
+            this.recipes = filteredRecipes;
+
+            // update recipes with tags filters
+            this.tagsEvent(this.recipes);
 
             // update recipes list
-            updateCardsRecipes(filteredRecipes);
+            updateCardsRecipes(this.recipes);
+
             // update dropdown filter
-            handleDropdown('ingredients', getAllIngredients(filteredRecipes));
-            handleDropdown('appliances', getAllAppliances(filteredRecipes));
-            handleDropdown('ustensils', getAllUstensils(filteredRecipes));
-            // update recipes with tags filters
-            this.tagsEvent(filteredRecipes);
+            this.updateDropdown();
         });
     }
 
@@ -72,17 +73,30 @@ class App {
         const tagsContainer = document.querySelector('.tags-container');
         // When new or remove tag on tags container
         tagsContainer.addEventListener('DOMSubtreeModified', () => {
-            let filteredRecipesWithTags = filterRecipesByTags(recipes, getAllTagIds());
-            filteredRecipesWithTags.length > 0
-                ? (this.recipes = filteredRecipesWithTags)
-                : (this.recipes = recipes);
-            // update recipes list
-            updateCardsRecipes(this.recipes);
-            // update dropdown filter
-            handleDropdown('ingredients', getAllIngredients(this.recipes));
-            handleDropdown('appliances', getAllAppliances(this.recipes));
-            handleDropdown('ustensils', getAllUstensils(this.recipes));
+            // Update recipes with tags
+            this.updateTagsRecipes(recipes);
         });
+        // Update recipes with tags
+        this.updateTagsRecipes(recipes);
+    }
+
+    // Update recipes by tags
+    updateTagsRecipes(recipes) {
+        let filteredRecipesWithTags = filterRecipesByTags(recipes, getAllTagIds());
+        filteredRecipesWithTags.length > 0
+            ? (this.recipes = filteredRecipesWithTags)
+            : (this.recipes = recipes);
+        // update recipes list
+        updateCardsRecipes(this.recipes);
+        // update dropdown filter
+        this.updateDropdown();
+    }
+
+    // Update dropdowns with updated recipes
+    updateDropdown() {
+        handleDropdown('ingredients', getAllIngredients(this.recipes));
+        handleDropdown('appliances', getAllAppliances(this.recipes));
+        handleDropdown('ustensils', getAllUstensils(this.recipes));
     }
 }
 
