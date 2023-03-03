@@ -8,7 +8,7 @@ import {
     getAllUstensils,
     filterRecipesByTags,
 } from './components/Recipes.js';
-import { filterSearch } from './components/SearchFilter.js';
+import { forSearch } from './components/SearchFor.js';
 import { handleDropdown } from './components/Dropdown.js';
 import { handleTagRemove, getAllTagIds } from './components/Tags.js';
 class App {
@@ -52,7 +52,7 @@ class App {
             const searchWord = event.target.value;
             const filteredRecipes =
                 searchWord.length >= 3
-                    ? await filterSearch(searchWord, this.recipes)
+                    ? await forSearch(searchWord, this.recipes)
                     : (this.recipes = recipes);
 
             this.recipes = filteredRecipes;
